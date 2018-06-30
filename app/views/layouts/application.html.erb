@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BookStroe</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <div class="nav">
+    <label>Book Store</label>
+    <div class="menu">
+      <ul>
+       <li><button onclick="myFunction()" class="dropbtn">
+         <% if user_signed_in?  %>
+           <%= current_user.email %>
+         <% else %>
+           Auth
+         <% end %>
+       </button></li>
+       <div id="myDropdown" class="dropdown-content">
+        <% if user_signed_in? %>
+        <div><%= link_to "Log Out", destroy_user_session_path, method: :delete %></div>
+        <div><%= link_to 'New Book', new_book_path %></div>
+        <% else  %>
+        <div><%= link_to "Sign Up", new_user_registration_path %></div>
+        <div><%= link_to "Log in", new_user_session_path %></div>
+        <% end %>
+       </div>
+       <li><%= link_to "List Books", books_path %></li>
+    </ul>
+  </div>
+</div>
+<div id="main-content">
+  <%= yield %>  
+</div>
+
+<div class="footer">
+  <div class="copy">&copy; 2018 Xiliari </div>
+</div>
+</body>
+</html>

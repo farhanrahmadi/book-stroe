@@ -1,0 +1,46 @@
+<%= form_with(model: book, local: true, multipart: true) do |form| %>
+<% if book.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+  <ul>
+    <% book.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="grid-container column-2 half-page">
+  <div>
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title, :autocomplete => "off"  %>
+    </div>
+
+    <div class="field">
+      <%= form.label :author %>
+      <%= form.text_field :author, :autocomplete => "off" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :page %>
+      <%= form.number_field :page, :autocomplete => "off" %>
+    </div>
+  </div>
+
+  <div>
+    <div class="field">
+      <%= form.label :stock %>
+      <%= form.number_field :page, :autocomplete => "off" %>
+    </div>
+    <div class="field">
+      <%= form.label :sinopsys %>
+      <%= form.text_area :description, :autocomplete => "off", :rows => 10 %>
+    </div>
+  </div>
+  <div class="actions half-page span-2">
+    <%= form.submit :class => "btn good" %>
+  </div>
+</div>
+
+<% end %>

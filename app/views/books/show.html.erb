@@ -1,0 +1,42 @@
+<div id="notice"><%= notice %></div>
+<div class="page">
+	<div class="grid-container ratio-1-2 half-page card">
+		<div class="panel-pic">
+			<%= image_tag("hp1.jpg") %>
+		</div>
+		<div class="grid-container ratio-1-3">
+			<div class="title span-2"><%= @book.title %></div>
+			<div>Author</div><div>:<%= @book.author %></div>
+			<div>Page</div><div>:<%= @book.page %></div>
+			<div>Stock</div><div>:<%= @book.stock %></div>
+			<div>Sinopsys</div><div>: <%= @book.description %></div>
+
+		</div>
+	</div>
+	<div>
+		<%= form_for([@book,@comment], remote: true) do |form| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+      <div class="field">
+      <%= form.label :comment %>
+      <%= form.text_area :description, :autocomplete => "off", :rows => 10 %>
+    </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+	</div>
+</div>
+<div class="button-container">
+	<%= link_to 'Edit', edit_book_path(@book), class:"btn warn" %>
+	<%= link_to 'Back', books_path, class:"btn good" %>
+</div>

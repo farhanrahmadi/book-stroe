@@ -1,0 +1,26 @@
+<div id="notice"><%= notice %></div>
+
+<div class="title">Book Store</div>
+<div class="content">
+<% @books.each do |book| %>
+<div class="panel">
+ 
+  <div class="panel-caption">
+    <div class="desc-title"><%= book.title %></div>
+     <div class="panel-pic">
+    <%= image_tag("hp1.jpg", :alt => "rss feed") %>
+  </div>
+    <div class="desc-label">Author : <%= book.author %></div>
+    <div class="desc-label">Page: <%= book.page %></div>
+    <div class="desc-label">Stock: <%= book.stock %></div>
+    <div class="desc-label">Realease Date: <%= book.created_at %></div>
+    <div class="desc-label">Synopsis:<%= book.description %></div>
+    <div class="link-container">
+      <div><%= link_to 'Show', book ,class: "btn good" %></div>
+      <div><%= link_to 'Edit', edit_book_path(book),class: "btn warn" %></div>
+      <div><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' },class: "btn bad" %></div>
+    </div>
+  </div>
+</div>
+<% end %>
+</div>
